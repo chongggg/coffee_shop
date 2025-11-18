@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Grind Coffee Shop - Aroma and Taste</title>
+    
+    <!-- Google Fonts for Premium Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           CSS VARIABLES - Modern Color Palette
+           ============================================ */
+        :root {
+            /* Coffee-Inspired Color Palette */
+            --espresso-dark: #2D1B00;
+            --roasted-brown: #4A2C2A;
+            --medium-roast: #6F4E37;
+            --caramel: #C4996A;
+            --cream: #F5E6D3;
+            --latte-white: #FAF7F2;
+            --mocha: #8B4513;
+            --gold-accent: #D4AF37;
+            
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            
+            /* Spacing */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 40px;
+            --spacing-xl: 60px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-smooth: 0.4s ease;
+            --transition-slow: 0.6s ease;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(45, 27, 0, 0.1);
+            --shadow-md: 0 4px 16px rgba(45, 27, 0, 0.15);
+            --shadow-lg: 0 8px 32px rgba(45, 27, 0, 0.2);
+        }
+
+        /* ============================================
+           GLOBAL STYLES
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, var(--latte-white) 0%, var(--cream) 100%);
+            color: var(--espresso-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           HEADER - Hero Section with Parallax Effect
+           ============================================ */
+        .main-header {
+            background: linear-gradient(rgba(45, 27, 0, 0.7), rgba(74, 44, 42, 0.8)),
+                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1600') center/cover;
+            color: var(--cream);
+            padding: var(--spacing-xl) var(--spacing-md);
+            text-align: center;
+            min-height: 65vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--gold-accent);
+            animation: fadeIn 1s ease-in;
+        }
+
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(45, 27, 0, 0.3) 100%);
+            pointer-events: none;
+        }
+
+        .main-header h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: 2px;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5);
+            animation: slideDown 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-header p {
+            font-family: var(--font-body);
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-style: italic;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-top: var(--spacing-sm);
+            letter-spacing: 1px;
+            animation: slideUp 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ============================================
+           NAVIGATION - Sticky & Interactive
+           ============================================ */
+        .main-nav {
+            background: rgba(196, 153, 106, 0.95);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-sm) 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-smooth);
+        }
+
+        .main-nav.scrolled {
+            background: rgba(74, 44, 42, 0.98);
+            padding: 12px 0;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .main-nav ul li {
+            position: relative;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: var(--espresso-dark);
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 12px 24px;
+            border-radius: 30px;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .main-nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--roasted-brown);
+            transition: all var(--transition-smooth);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .main-nav ul li a:hover::before {
+            width: 200%;
+            height: 200%;
+        }
+
+        .main-nav ul li a:hover {
+            color: var(--cream);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .main-nav.scrolled ul li a {
+            color: var(--cream);
+        }
+
+        .main-nav.scrolled ul li a:hover {
+            background: var(--gold-accent);
+            color: var(--espresso-dark);
+        }
+
+        /* ============================================
+           MAIN CONTENT
+           ============================================ */
+        main {
+            max-width: 1200px;
+            margin: var(--spacing-xl) auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .section-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.8s ease forwards;
+            transition: all var(--transition-smooth);
+            border: 1px solid rgba(196, 153, 106, 0.2);
+        }
+
+        .section-content:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .section-content:nth-child(1) { animation-delay: 0.1s; }
+        .section-content:nth-child(2) { animation-delay: 0.2s; }
+        .section-content:nth-child(3) { animation-delay: 0.3s; }
+        .section-content:nth-child(4) { animation-delay: 0.4s; }
+
+        .section-content h2 {
+            font-family: var(--font-heading);
+            color: var(--roasted-brown);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            border-bottom: 3px solid var(--caramel);
+            padding-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gold-accent);
+            transition: width var(--transition-smooth);
+        }
+
+        .section-content:hover h2::after {
+            width: 100%;
+        }
+
+        .section-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: var(--medium-roast);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* ============================================
+           MENU ITEMS - Interactive Cards
+           ============================================ */
+        .menu-item {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-md);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(250, 247, 242, 0.8) 0%, rgba(245, 230, 211, 0.6) 100%);
+            align-items: center;
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left var(--transition-slow);
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:hover {
+            border-color: var(--caramel);
+            box-shadow: var(--shadow-lg);
+            transform: translateX(8px) scale(1.02);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 230, 211, 0.8) 100%);
+        }
+
+        .menu-item.best-seller {
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFEAA7 50%, #FFE082 100%);
+            border: 2px solid var(--gold-accent);
+            position: relative;
+        }
+
+        .menu-item.best-seller::after {
+            content: '⭐ BEST SELLER';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--gold-accent);
+            color: var(--espresso-dark);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .menu-item.best-seller:hover {
+            border-color: var(--gold-accent);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .menu-item-info {
+            flex-grow: 1;
+        }
+
+        .menu-item h3 {
+            font-family: var(--font-heading);
+            color: var(--espresso-dark);
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            margin-bottom: var(--spacing-xs);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            transition: color var(--transition-fast);
+        }
+
+        .menu-item:hover h3 {
+            color: var(--mocha);
+        }
+
+        .price {
+            color: var(--roasted-brown);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 700;
+            font-family: var(--font-body);
+            white-space: nowrap;
+            background: var(--cream);
+            padding: 6px 16px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .menu-item:hover .price {
+            background: var(--gold-accent);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Coffee Images with Advanced Hover Effect */
+        .coffee-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            flex-shrink: 0;
+        }
+
+        .coffee-image img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: all var(--transition-smooth);
+            border: 3px solid var(--caramel);
+        }
+
+        .menu-item:hover .coffee-image img {
+            transform: scale(1.15) rotate(3deg);
+            border-color: var(--gold-accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .coffee-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(139, 69, 19, 0.3));
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            border-radius: 12px;
+        }
+
+        .menu-item:hover .coffee-image::after {
+            opacity: 1;
+        }
+
+        /* ============================================
+           LOCATION & CONTACT SECTIONS
+           ============================================ */
+        address {
+            font-style: normal;
+            font-size: 1.15rem;
+            color: var(--medium-roast);
+            background: var(--cream);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            border-left: 4px solid var(--caramel);
+            margin-top: var(--spacing-sm);
+        }
+
+        #contact p {
+            font-size: 1.15rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        #contact a {
+            color: var(--mocha);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-fast);
+            border-bottom: 2px solid transparent;
+        }
+
+        #contact a:hover {
+            color: var(--gold-accent);
+            border-bottom-color: var(--gold-accent);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: linear-gradient(135deg, var(--espresso-dark) 0%, var(--roasted-brown) 100%);
+            color: var(--cream);
+            text-align: center;
+            padding: var(--spacing-lg) var(--spacing-md);
+            margin-top: var(--spacing-xl);
+            border-top: 4px solid var(--gold-accent);
+        }
+
+        footer p {
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        footer a {
+            color: var(--caramel);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-fast);
+        }
+
+        footer a:hover {
+            color: var(--gold-accent);
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .main-nav ul {
+                gap: var(--spacing-sm);
+            }
+
+            .main-nav ul li a {
+                padding: 10px 16px;
+                font-size: 0.95rem;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .coffee-image img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .menu-item h3 {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section-content {
+                padding: var(--spacing-md);
+            }
+
+            main {
+                margin: var(--spacing-md) auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-header {
+                min-height: 50vh;
+                padding: var(--spacing-md);
+            }
+
+            .menu-item.best-seller::after {
+                top: 10px;
+                right: 10px;
+                font-size: 0.65rem;
+                padding: 4px 12px;
+            }
+        }
+
+        /* ============================================
+           SCROLL ANIMATIONS (Intersection Observer Ready)
+           ============================================ */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all var(--transition-slow);
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           ☕ FLOATING COFFEE BEANS ANIMATION
+           ============================================ */
+        .coffee-bean {
+            position: fixed;
+            font-size: 24px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatUp 8s ease-in infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        /* ============================================
+           💨 STEAM RISING ANIMATION
+           ============================================ */
+        .steam-container {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .steam {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0;
+            animation: steamRise 4s ease-out infinite;
+        }
+
+        .steam:nth-child(1) { left: -20px; animation-delay: 0s; }
+        .steam:nth-child(2) { left: 0px; animation-delay: 1s; }
+        .steam:nth-child(3) { left: 20px; animation-delay: 2s; }
+
+        @keyframes steamRise {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0.8);
+            }
+            20% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(1.5);
+            }
+        }
+
+        /* ============================================
+           ☕ BOUNCING COFFEE CUP ICON
+           ============================================ */
+        .coffee-cup-icon {
+            display: inline-block;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            animation: gentleBounce 2s ease-in-out infinite;
+        }
+
+        .coffee-cup-icon:hover {
+            animation: bounceSpin 0.6s ease-in-out;
+        }
+
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes bounceSpin {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+            75% { transform: translateY(-20px) rotate(270deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        /* ============================================
+           ✨ BREWING SHINE EFFECT
+           ============================================ */
+        .brewing-shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.4) 50%, 
+                transparent 100%);
+            animation: brewingShine 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes brewingShine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        #menu {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ============================================
+           💧 COFFEE DRIPS ON HOVER
+           ============================================ */
+        .coffee-drip {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            pointer-events: none;
+            animation: drip 1s ease-out forwards;
+        }
+
+        @keyframes drip {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+        }
+
+        /* ============================================
+           🫧 BUBBLING EFFECT
+           ============================================ */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(196, 153, 106, 0.4));
+            opacity: 0;
+            pointer-events: none;
+            animation: bubbleUp 2s ease-out forwards;
+        }
+
+        @keyframes bubbleUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(1);
+            }
+        }
+
+        /* ============================================
+           🌀 CREAM SWIRL ANIMATION
+           ============================================ */
+        .cream-swirl {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(245, 230, 211, 0.3) 0%, transparent 70%);
+            animation: swirl 10s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes swirl {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.2); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); opacity: 0.3; }
+        }
+
+        /* ============================================
+           ☕ COFFEE CUP EMOJIS ON HOVER
+           ============================================ */
+        .coffee-emoji {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0;
+            pointer-events: none;
+            animation: wiggleUp 1s ease-out forwards;
+        }
+
+        @keyframes wiggleUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            25% { transform: translateY(-20px) rotate(-10deg); }
+            50% { transform: translateY(-40px) rotate(10deg); }
+            75% { transform: translateY(-60px) rotate(-5deg); }
+            100% {
+                opacity: 0;
+                transform: translateY(-80px) rotate(0deg);
+            }
+        }
+
+        /* ============================================
+           ❤️ COFFEE HEARTS ANIMATION
+           ============================================ */
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            pointer-events: none;
+            animation: heartFloat 2s ease-out forwards;
+            color: #e74c3c;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.8);
+            }
+        }
+
+        /* ============================================
+           💫 COFFEE RING STAINS
+           ============================================ */
+        .coffee-stain {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(74, 44, 42, 0.1) 0%, transparent 70%);
+            border: 2px solid rgba(74, 44, 42, 0.15);
+            animation: pulsate 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .coffee-stain:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .coffee-stain:nth-child(2) { top: 40%; right: 10%; animation-delay: 1s; }
+        .coffee-stain:nth-child(3) { bottom: 20%; left: 15%; animation-delay: 2s; }
+
+        @keyframes pulsate {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 0.5;
+            }
+        }
+
+        /* ============================================
+           ✨ GLOWING BEST SELLER EFFECT
+           ============================================ */
+        .menu-item.best-seller {
+            animation: goldenGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes goldenGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        /* ============================================
+           🎯 INTERACTIVE SECTION TITLES
+           ============================================ */
+        .section-content h2 {
+            position: relative;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+        }
+
+        .section-content h2:hover {
+            transform: translateX(10px);
+            color: var(--mocha);
+        }
+
+        .section-content h2::before {
+            content: '☕';
+            position: absolute;
+            left: -50px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all var(--transition-smooth);
+            font-size: 1.5em;
+        }
+
+        .section-content h2:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ============================================
+           ENHANCED ABOUT US SECTION
+           ============================================ */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--latte-white) 100%);
+            padding: var(--spacing-md);
+            border-radius: 12px;
+            text-align: center;
+            transition: all var(--transition-smooth);
+            border: 2px solid var(--caramel);
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold-accent);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-sm);
+            animation: gentleBounce 2s ease-in-out infinite;
+        }
+
+        .feature-card:hover .feature-icon {
+            animation: bounceSpin 0.6s ease-in-out;
+        }
+
+        .feature-title {
+            font-family: var(--font-heading);
+            color: var(--roasted-brown);
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+        }
+
+        .feature-description {
+            color: var(--medium-roast);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .highlight-text {
+            font-size: 1.2rem;
+            color: var(--roasted-brown);
+            font-weight: 600;
+            text-align: center;
+            margin: var(--spacing-md) 0;
+            padding: var(--spacing-sm);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(196, 153, 106, 0.2));
+            border-radius: 8px;
+            border-left: 4px solid var(--gold-accent);
+        }
+
+        /* ============================================
+           📍 ENHANCED LOCATION SECTION
+           ============================================ */
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+
+        .location-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, var(--latte-white), var(--cream));
+            padding: var(--spacing-md);
+            border-radius: 12px;
+            border-left: 4px solid var(--caramel);
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .info-card:hover {
+            transform: translateX(10px);
+            border-left-color: var(--gold-accent);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-card-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-xs);
+            display: inline-block;
+            animation: gentleBounce 2s ease-in-out infinite;
+        }
+
+        .info-card:hover .info-card-icon {
+            animation: bounceSpin 0.6s ease-in-out;
+        }
+
+        .info-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--roasted-brown);
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+        }
+
+        .info-card-content {
+            color: var(--medium-roast);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-smooth);
+        }
+
+        .map-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(45, 27, 0, 0.25);
+        }
+
+        .map-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 4px solid var(--caramel);
+            transition: all var(--transition-smooth);
+        }
+
+        .map-container:hover img {
+            border-color: var(--gold-accent);
+        }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(45, 27, 0, 0.8), transparent);
+            padding: var(--spacing-md);
+            color: white;
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+
+        .map-container:hover .map-overlay {
+            opacity: 1;
+        }
+
+        /* ============================================
+           📞 ENHANCED CONTACT SECTION
+           ============================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--latte-white) 100%);
+            padding: var(--spacing-lg);
+            border-radius: 16px;
+            text-align: center;
+            transition: all var(--transition-smooth);
+            border: 3px solid var(--caramel);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform var(--transition-slow);
+        }
+
+        .contact-card:hover::before {
+            transform: scale(1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold-accent);
+        }
+
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-sm);
+            display: inline-block;
+            animation: gentleBounce 2s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-card:hover .contact-icon {
+            animation: bounceSpin 0.6s ease-in-out;
+        }
+
+        .contact-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--roasted-brown);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-details {
+            color: var(--medium-roast);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-details a {
+            color: var(--mocha);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            border-bottom: 2px solid transparent;
+            display: inline-block;
+        }
+
+        .contact-details a:hover {
+            color: var(--gold-accent);
+            border-bottom-color: var(--gold-accent);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           ⏰ HOURS SECTION
+           ============================================ */
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--latte-white);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 8px;
+            border-left: 4px solid var(--caramel);
+            transition: all var(--transition-fast);
+        }
+
+        .hours-item:hover {
+            background: var(--cream);
+            border-left-color: var(--gold-accent);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hours-day {
+            font-weight: 600;
+            color: var(--roasted-brown);
+            font-size: 1.1rem;
+        }
+
+        .hours-time {
+            color: var(--medium-roast);
+            font-weight: 500;
+        }
+
+        .hours-item.today {
+            background: linear-gradient(135deg, #FFF8DC, #FFEAA7);
+            border-left-color: var(--gold-accent);
+            font-weight: 700;
+        }
+
+        /* ============================================
+           🎉 SPECIAL OFFERS SECTION
+           ============================================ */
+        .offers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .offer-card {
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFE082 100%);
+            padding: var(--spacing-lg);
+            border-radius: 16px;
+            border: 3px solid var(--gold-accent);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .offer-card::before {
+            content: '🎉';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 6rem;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+
+        .offer-card:hover {
+            transform: scale(1.05) rotate(-1deg);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.4);
+        }
+
+        .offer-badge {
+            background: var(--gold-accent);
+            color: var(--espresso-dark);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: 1px;
+        }
+
+        .offer-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--roasted-brown);
+            margin-bottom: var(--spacing-xs);
+            font-weight: 700;
+        }
+
+        .offer-description {
+            color: var(--medium-roast);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .offer-cta {
+            background: var(--roasted-brown);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: var(--spacing-sm);
+            transition: all var(--transition-smooth);
+            text-decoration: none;
+        }
+
+        .offer-cta:hover {
+            background: var(--gold-accent);
+            color: var(--espresso-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============================================
+           💬 TESTIMONIALS SECTION
+           ============================================ */
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-smooth);
+            border-top: 4px solid var(--caramel);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 6rem;
+            color: var(--cream);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-top-color: var(--gold-accent);
+        }
+
+        .testimonial-text {
+            color: var(--medium-roast);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .author-avatar {
+            font-size: 2.5rem;
+        }
+
+        .author-info {
+            flex-grow: 1;
+        }
+
+        .author-name {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--roasted-brown);
+            font-weight: 600;
+        }
+
+        .author-rating {
+            color: var(--gold-accent);
+            font-size: 1.1rem;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN FOR NEW SECTIONS
+           ============================================ */
+        @media (max-width: 768px) {
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    </head>
+<body>
+    <header class="main-header">
+        <div class="cream-swirl"></div>
+        <div class="coffee-stain"></div>
+        <div class="coffee-stain"></div>
+        <div class="coffee-stain"></div>
+        <span class="coffee-cup-icon">☕</span>
+        <h1>The Daily Grind Coffee Shop</h1>
+        <p>Your daily dose of the perfect coffee.</p>
+        <div class="steam-container">
+            <span class="steam">💨</span>
+            <span class="steam">💨</span>
+            <span class="steam">💨</span>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#offers">Offers</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="about" class="section-content">
+            <h2>About Us</h2>
+            <p style="font-size: 1.15rem; line-height: 1.9; margin-bottom: 20px;">Welcome to <strong style="color: var(--mocha);">The Daily Grind</strong>, where every cup tells a story and every sip is a celebration of craftsmanship. We're not just serving coffee – we're creating moments of pure bliss.</p>
+            
+            <div class="highlight-text">
+                ☕ Brewing Excellence Since 2020 | Crafting Memories, One Cup at a Time ☕
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <div class="feature-title">100% Organic</div>
+                    <div class="feature-description">Premium beans sourced from sustainable farms</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍🍳</div>
+                    <div class="feature-title">Expert Baristas</div>
+                    <div class="feature-description">Passionate craftspeople perfecting every pour</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">❤️</div>
+                    <div class="feature-title">Made with Love</div>
+                    <div class="feature-description">Every drink is prepared with care and dedication</div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <div class="feature-title">Award Winning</div>
+                    <div class="feature-description">Recognized for outstanding quality and taste</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.1rem; margin-top: 24px; text-align: center; font-style: italic; color: var(--medium-roast);">
+                "Life happens, coffee helps. Come experience the perfect blend of flavor, atmosphere, and community."
+            </p>
+        </section>
+
+        <section id="menu" class="section-content">
+            <div class="brewing-shine"></div>
+            <h2>Our Menu</h2>
+            
+            <div class="menu-item best-seller">
+                <div class="coffee-image">
+                    <img src="images/caramelmacchiato.jpeg" alt="Caramel Macchiato">
+                </div>
+                <div class="menu-item-info">
+                    <h3>
+                        Caramel Macchiato
+                        <span class="price">₱ 165.00 </span>
+                    </h3>
+                    <p>Sweet vanilla, espresso, steamed milk, and finished with a rich caramel drizzle. Absolutely delicious!</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="coffee-image">
+                    <img src="images/Mocha.png" alt="Mocha">
+                </div>
+                <div class="menu-item-info">
+                    <h3>
+                        Mocha
+                        <span class="price">₱ 155.00 </span>
+                    </h3>
+                    <p>A decadent blend of espresso, steamed milk, and rich chocolate syrup. The perfect treat!</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="coffee-image">
+                    <img src="images/cappuccino.jpg" alt="Cappuccino">
+                </div>
+                <div class="menu-item-info">
+                    <h3>
+                        Cappuccino
+                        <span class="price">₱ 140.00 </span>
+                    </h3>
+                    <p>Espresso with a dense, foamy layer of steamed milk. Classic and satisfying.</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="coffee-image">
+                    <img src="images/latte.jpeg" alt="Latte">
+                </div>
+                <div class="menu-item-info">
+                    <h3>
+                        Latte
+                        <span class="price">₱ 145.00 </span>
+                    </h3>
+                    <p>Smooth, creamy, and the perfect blend of espresso and milk.</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="coffee-image">
+                    <img src="images/americano.jpeg" alt="Americano">
+                </div>
+                <div class="menu-item-info">
+                    <h3>
+                        Americano
+                        <span class="price">₱ 120.00 </span>
+                    </h3>
+                    <p>Bold and rich flavor. Perfect for a strong start to your day!</p>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="coffee-image">
+                    <img src="images/Brew of the Day.jpeg" alt="Brew of the Day">
+                </div>
+                <div class="menu-item-info">
+                    <h3>
+                        Brew of the Day
+                        <span class="price">₱ 110.00 </span>
+                    </h3>
+                    <p>Changes daily! Ask your barista for today's special.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="location" class="section-content">
+            <h2>Find Us</h2>
+            <p style="font-size: 1.15rem; color: var(--medium-roast); margin-bottom: 24px;">Come visit us and experience the warmth of our coffee shop. We're conveniently located and ready to serve you!</p>
+            
+            <div class="location-container">
+                <div class="location-info">
+                    <div class="info-card">
+                        <div class="info-card-icon">📍</div>
+                        <div class="info-card-title">Address</div>
+                        <div class="info-card-content">
+                            123 Coffee St., Sa Tabi-tabi lang<br>
+                            Calapan City, Philippines
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-card-icon">🚗</div>
+                        <div class="info-card-title">How to Get Here</div>
+                        <div class="info-card-content">
+                            5 minutes from City Center<br>
+                            Free parking available<br>
+                            Near major landmarks
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-card-icon">🪑</div>
+                        <div class="info-card-title">Seating</div>
+                        <div class="info-card-content">
+                            Cozy indoor seating<br>
+                            Outdoor patio available<br>
+                            Free WiFi for customers
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-container">
+                    <img src="images/map.png" alt="Location Map">
+                    <div class="map-overlay">
+                        <strong style="font-size: 1.2rem;">📍 The Daily Grind</strong><br>
+                        Click to open in maps
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="hours" class="section-content">
+            <h2>Opening Hours</h2>
+            <p style="font-size: 1.15rem; color: var(--medium-roast); margin-bottom: 24px;">We're here to serve you delicious coffee throughout the week!</p>
+            
+            <div class="hours-grid">
+                <div class="hours-item">
+                    <span class="hours-day">Monday</span>
+                    <span class="hours-time">7:00 AM - 8:00 PM</span>
+                </div>
+                <div class="hours-item">
+                    <span class="hours-day">Tuesday</span>
+                    <span class="hours-time">7:00 AM - 8:00 PM</span>
+                </div>
+                <div class="hours-item">
+                    <span class="hours-day">Wednesday</span>
+                    <span class="hours-time">7:00 AM - 8:00 PM</span>
+                </div>
+                <div class="hours-item">
+                    <span class="hours-day">Thursday</span>
+                    <span class="hours-time">7:00 AM - 8:00 PM</span>
+                </div>
+                <div class="hours-item">
+                    <span class="hours-day">Friday</span>
+                    <span class="hours-time">7:00 AM - 10:00 PM</span>
+                </div>
+                <div class="hours-item today">
+                    <span class="hours-day">Saturday ⭐</span>
+                    <span class="hours-time">8:00 AM - 10:00 PM</span>
+                </div>
+                <div class="hours-item">
+                    <span class="hours-day">Sunday</span>
+                    <span class="hours-time">8:00 AM - 9:00 PM</span>
+                </div>
+            </div>
+
+            <div class="highlight-text" style="margin-top: 24px;">
+                ☕ Happy Hour: 3PM - 5PM Daily | Get 20% off all beverages!
+            </div>
+        </section>
+
+        <section id="contact" class="section-content">
+            <h2>Get In Touch</h2>
+            <p style="font-size: 1.15rem; color: var(--medium-roast); margin-bottom: 24px;">Have questions? Want to make a reservation? We'd love to hear from you!</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-title">Call Us</div>
+                    <div class="contact-details">
+                        <a href="tel:09668414616">0966 841 4616</a><br>
+                        Available during business hours
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-title">Email Us</div>
+                    <div class="contact-details">
+                        <a href="mailto:coffeeshop@email.com">coffeeshop@email.com</a><br>
+                        We'll reply within 24 hours
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <div class="contact-title">Social Media</div>
+                    <div class="contact-details">
+                        @TheDailyGrindPH<br>
+                        Follow us for updates!
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">🎂</div>
+                    <div class="contact-title">Events & Catering</div>
+                    <div class="contact-details">
+                        Perfect for parties & meetings<br>
+                        Contact us for special rates
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="offers" class="section-content">
+            <h2>Special Offers</h2>
+            <p style="font-size: 1.15rem; color: var(--medium-roast); margin-bottom: 24px;">Don't miss out on our amazing deals and promotions!</p>
+            
+            <div class="offers-container">
+                <div class="offer-card">
+                    <span class="offer-badge">NEW CUSTOMER</span>
+                    <div class="offer-title">Welcome Bonus</div>
+                    <div class="offer-description">
+                        Get a FREE pastry with your first coffee purchase! Show this to our barista.
+                    </div>
+                    <a href="#menu" class="offer-cta">View Menu</a>
+                </div>
+
+                <div class="offer-card">
+                    <span class="offer-badge">LOYALTY REWARD</span>
+                    <div class="offer-title">Buy 9, Get 1 Free</div>
+                    <div class="offer-description">
+                        Join our loyalty program and get every 10th coffee absolutely free!
+                    </div>
+                    <a href="#contact" class="offer-cta">Sign Up Now</a>
+                </div>
+
+                <div class="offer-card">
+                    <span class="offer-badge">WEEKEND SPECIAL</span>
+                    <div class="offer-title">Brunch Bundle</div>
+                    <div class="offer-description">
+                        Saturday & Sunday: Coffee + Pastry combo for only ₱200! Save ₱65!
+                    </div>
+                    <a href="#menu" class="offer-cta">Order Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section-content">
+            <h2>What Our Customers Say</h2>
+            <p style="font-size: 1.15rem; color: var(--medium-roast); margin-bottom: 24px;">We're grateful for the amazing feedback from our coffee-loving community!</p>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        The best coffee in town! The Caramel Macchiato is absolutely divine. The atmosphere is cozy and the staff is incredibly friendly.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩</div>
+                        <div class="author-info">
+                            <div class="author-name">Maria Santos</div>
+                            <div class="author-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        I come here every morning for my Americano. Consistent quality, great prices, and the perfect spot to start my day!
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨</div>
+                        <div class="author-info">
+                            <div class="author-name">Juan Dela Cruz</div>
+                            <div class="author-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Love the vibe here! Perfect place to work or catch up with friends. The WiFi is fast and the coffee keeps me going all day.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👩‍💼</div>
+                        <div class="author-info">
+                            <div class="author-name">Ana Reyes</div>
+                            <div class="author-rating">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 The Daily Grind Coffee Shop. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Interactive Features -->
+    <script>
+        // ============================================
+        // STICKY NAVIGATION - Change style on scroll
+        // ============================================
+        const nav = document.querySelector('.main-nav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // ============================================
+        // SMOOTH SCROLL for Navigation Links
+        // ============================================
+        document.querySelectorAll('.main-nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ============================================
+        // INTERSECTION OBSERVER - Fade in on scroll
+        // ============================================
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all section contents
+        document.querySelectorAll('.section-content').forEach(section => {
+            observer.observe(section);
+        });
+
+        // ============================================
+        // PARALLAX EFFECT on Header
+        // ============================================
+        const header = document.querySelector('.main-header');
+        
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            if (header) {
+                header.style.transform = `translateY(${scrolled * 0.5}px)`;
+                header.style.opacity = 1 - (scrolled / 600);
+            }
+        });
+
+        // ============================================
+        // MENU ITEM CLICK - Add subtle animation
+        // ============================================
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 10);
+            });
+        });
+
+        // ============================================
+        // PAGE LOAD ANIMATION
+        // ============================================
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // ============================================
+        // ☕ FLOATING COFFEE BEANS
+        // ============================================
+        function createFloatingBean() {
+            const bean = document.createElement('div');
+            bean.className = 'coffee-bean';
+            bean.textContent = '☕';
+            bean.style.left = Math.random() * 100 + 'vw';
+            bean.style.animationDuration = (5 + Math.random() * 3) + 's';
+            bean.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(bean);
+            
+            setTimeout(() => bean.remove(), 8000);
+        }
+
+        // Create beans continuously
+        setInterval(createFloatingBean, 1500);
+
+        // ============================================
+        // 💧 COFFEE DRIPS ON IMAGE HOVER
+        // ============================================
+        document.querySelectorAll('.coffee-image').forEach(img => {
+            img.addEventListener('mouseenter', function(e) {
+                const drip = document.createElement('div');
+                drip.className = 'coffee-drip';
+                drip.textContent = '💧';
+                drip.style.left = (Math.random() * 80 + 10) + '%';
+                drip.style.top = '0';
+                this.style.position = 'relative';
+                this.appendChild(drip);
+                
+                setTimeout(() => drip.remove(), 1000);
+            });
+        });
+
+        // ============================================
+        // 🫧 BUBBLES FROM COFFEE IMAGES
+        // ============================================
+        document.querySelectorAll('.coffee-image').forEach(img => {
+            img.addEventListener('mouseenter', function() {
+                for (let i = 0; i < 3; i++) {
+                    setTimeout(() => {
+                        const bubble = document.createElement('div');
+                        bubble.className = 'bubble';
+                        bubble.style.width = (10 + Math.random() * 20) + 'px';
+                        bubble.style.height = bubble.style.width;
+                        bubble.style.left = (Math.random() * 80 + 10) + '%';
+                        bubble.style.bottom = '0';
+                        this.style.position = 'relative';
+                        this.appendChild(bubble);
+                        
+                        setTimeout(() => bubble.remove(), 2000);
+                    }, i * 200);
+                }
+            });
+        });
+
+        // ============================================
+        // ☕ COFFEE EMOJIS ON MENU ITEM HOVER
+        // ============================================
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('mouseenter', function(e) {
+                const emoji = document.createElement('div');
+                emoji.className = 'coffee-emoji';
+                emoji.textContent = ['☕', '🍵', '🥤'][Math.floor(Math.random() * 3)];
+                emoji.style.left = (e.clientX - this.getBoundingClientRect().left) + 'px';
+                emoji.style.top = (e.clientY - this.getBoundingClientRect().top) + 'px';
+                this.style.position = 'relative';
+                this.appendChild(emoji);
+                
+                setTimeout(() => emoji.remove(), 1000);
+            });
+        });
+
+        // ============================================
+        // ❤️ HEARTS ON MENU ITEM HOVER
+        // ============================================
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('mouseenter', function(e) {
+                for (let i = 0; i < 2; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.className = 'heart';
+                        heart.textContent = '❤️';
+                        heart.style.left = (e.clientX - this.getBoundingClientRect().left + (Math.random() - 0.5) * 100) + 'px';
+                        heart.style.top = (e.clientY - this.getBoundingClientRect().top) + 'px';
+                        this.style.position = 'relative';
+                        this.appendChild(heart);
+                        
+                        setTimeout(() => heart.remove(), 2000);
+                    }, i * 300);
+                }
+            });
+        });
+
+        // ============================================
+        // 🎯 SECTION TITLE INTERACTION
+        // ============================================
+        document.querySelectorAll('.section-content h2').forEach(title => {
+            title.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'tada 0.5s ease';
+                }, 10);
+            });
+        });
+
+        // ============================================
+        // FEATURE CARDS INTERACTION
+        // ============================================
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const icon = this.querySelector('.feature-icon');
+                icon.style.animation = 'none';
+                setTimeout(() => {
+                    icon.style.animation = 'bounceSpin 0.6s ease-in-out';
+                }, 10);
+            });
+        });
+
+        // ============================================
+        // CONTACT CARDS SPARKLE EFFECT
+        // ============================================
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Create sparkle effect
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        const sparkle = document.createElement('div');
+                        sparkle.textContent = '✨';
+                        sparkle.style.position = 'absolute';
+                        sparkle.style.left = (Math.random() * 100) + '%';
+                        sparkle.style.top = (Math.random() * 100) + '%';
+                        sparkle.style.fontSize = '20px';
+                        sparkle.style.pointerEvents = 'none';
+                        sparkle.style.animation = 'heartFloat 1.5s ease-out forwards';
+                        this.style.position = 'relative';
+                        this.appendChild(sparkle);
+                        
+                        setTimeout(() => sparkle.remove(), 1500);
+                    }, i * 100);
+                }
+            });
+        });
+
+        // ============================================
+        // MAP CONTAINER CLICK INTERACTION
+        // ============================================
+        document.querySelector('.map-container')?.addEventListener('click', function() {
+            // Simulate opening map (you can add actual Google Maps link)
+            const coffeeEmojis = ['☕', '🗺️', '📍'];
+            coffeeEmojis.forEach((emoji, i) => {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.textContent = emoji;
+                    el.className = 'coffee-emoji';
+                    el.style.left = '50%';
+                    el.style.top = '50%';
+                    el.style.transform = 'translate(-50%, -50%)';
+                    this.style.position = 'relative';
+                    this.appendChild(el);
+                    setTimeout(() => el.remove(), 1000);
+                }, i * 200);
+            });
+        });
+
+        // ============================================
+        // INFO CARDS INTERACTION
+        // ============================================
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const icon = this.querySelector('.info-card-icon');
+                icon.style.animation = 'none';
+                setTimeout(() => {
+                    icon.style.animation = 'bounceSpin 0.6s ease-in-out';
+                }, 10);
+            });
+        });
+
+        // ============================================
+        // OFFER CARDS CONFETTI EFFECT
+        // ============================================
+        document.querySelectorAll('.offer-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const confetti = ['🎉', '🎊', '✨', '⭐', '💫'];
+                for (let i = 0; i < 8; i++) {
+                    setTimeout(() => {
+                        const conf = document.createElement('div');
+                        conf.textContent = confetti[Math.floor(Math.random() * confetti.length)];
+                        conf.style.position = 'absolute';
+                        conf.style.left = (Math.random() * 100) + '%';
+                        conf.style.top = (Math.random() * 50) + '%';
+                        conf.style.fontSize = '24px';
+                        conf.style.pointerEvents = 'none';
+                        conf.style.animation = 'heartFloat 2s ease-out forwards';
+                        this.style.position = 'relative';
+                        this.appendChild(conf);
+                        
+                        setTimeout(() => conf.remove(), 2000);
+                    }, i * 100);
+                }
+            });
+        });
+
+        // ============================================
+        // HOURS - HIGHLIGHT TODAY
+        // ============================================
+        window.addEventListener('load', () => {
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const today = days[new Date().getDay()];
+            
+            document.querySelectorAll('.hours-item').forEach(item => {
+                const dayText = item.querySelector('.hours-day').textContent;
+                if (dayText.includes(today)) {
+                    item.classList.add('today');
+                    item.querySelector('.hours-day').textContent = today + ' (Today) ⭐';
+                }
+            });
+        });
+
+        // ============================================
+        // TESTIMONIAL CARDS INTERACTION
+        // ============================================
+        document.querySelectorAll('.testimonial-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const hearts = ['❤️', '💛', '💚', '💙', '💜'];
+                const heart = hearts[Math.floor(Math.random() * hearts.length)];
+                
+                const el = document.createElement('div');
+                el.className = 'heart';
+                el.textContent = heart;
+                el.style.left = '50%';
+                el.style.top = '50%';
+                this.style.position = 'relative';
+                this.appendChild(el);
+                
+                setTimeout(() => el.remove(), 2000);
+            });
+        });
+    </script>
+    </body>
+</html>
